@@ -15,18 +15,17 @@ class FibHeap
 		numOfNodes++;
 
 	}
-	public void concatenate(Node X,Node newNode)
+	public void concatenate(Node x,Node y)
 	{
-		if(X==null)X = newNode;
-		else
+		if(x!=null && y!=null)
 		{
-			Node rightNode = X.right;
-			newNode.left = X;
-			newNode.right = rightNode;
-			X.right = newNode;
-			rightNode.left = newNode;
+			Node yleft = y.left;
+			Node xright = x.right;
+			x.right = y;
+			y.left = x;
+			yleft.right = xright;
+			xright.left = yleft;
 
-			
 		}
 
 	}
@@ -35,15 +34,15 @@ class FibHeap
 		Node z = min;
 		if(z!=null)
 		{
-			Node zchild = z.child;
-			z.child = null;   //doubt
-			if(zchild!=null)concatenate(z,zchild);
+			/*Node zchild = z.child;
+			z.child = null;   //doubt  */
+			if(z.child!=null)concatenate(z,z.child);
+			z.child=null;
+
 			if(z == z.right)
 			{	
 				min = null;
-				
 			}
-
 			else
 			{
 				
